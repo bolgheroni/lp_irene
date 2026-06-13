@@ -50,3 +50,28 @@ button:active { transform: scale(0.97); }
 #root[data-screen="gate"]    .screen.gate,
 #root[data-screen="reel"]    .screen.reel,
 #root[data-screen="wall"]    .screen.wall { display: block; }
+
+.screen.landing {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+#root[data-screen="landing"] .screen.landing { display: flex; }
+
+.landing .line {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text);
+  opacity: 0;
+  max-width: 22ch;
+  line-height: 1.4;
+}
+.landing .start {
+  opacity: 0;
+}
