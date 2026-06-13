@@ -251,3 +251,54 @@ button:active { transform: scale(0.97); }
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(6px);
 }
+
+#root[data-screen="wall"] .screen.wall {
+  display: block;
+  position: absolute; inset: 0;
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+.polaroid {
+  position: absolute;
+  width: 180px;
+  background: #f5ecd9;
+  padding: 10px 10px 36px 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+  border-radius: 2px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.polaroid:active { cursor: grabbing; }
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #222;
+}
+.polaroid .cap {
+  position: absolute; left: 0; right: 0; bottom: 8px;
+  text-align: center;
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.85rem;
+  color: #2a2a2a;
+}
+.polaroid.enlarged {
+  z-index: 9999;
+  width: min(80vw, 520px);
+}
+.our-song-badge {
+  position: fixed; right: 1rem; bottom: 1rem;
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.6em 1.1em;
+  border: 1px solid rgba(245,236,217,0.35);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+}
+.our-song-badge:hover { background: rgba(232,120,138,0.2); border-color: var(--accent); color: var(--accent); }

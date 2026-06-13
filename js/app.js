@@ -3,7 +3,7 @@ import { startFun } from './audio.js';
 import { renderPuzzle1, renderPuzzle2 } from './puzzles.js';
 import { renderSlot } from './slot-machine.js';
 import { renderGate } from './gate.js';
-import { renderReel } from './album.js';
+import { renderReel, renderWall } from './album.js';
 
 const root = document.getElementById('root');
 
@@ -29,6 +29,7 @@ const renderers = {
   puzzle3: () => renderSlot(ensureScreen('puzzle3'), () => go('gate')),
   gate: () => renderGate(ensureScreen('gate'), () => go('reel')),
   reel: () => renderReel(ensureScreen('reel'), () => go('wall')),
+  wall: () => renderWall(ensureScreen('wall')),
 };
 
 function ensureScreen(name) {

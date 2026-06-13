@@ -1,4 +1,4 @@
-import { REEL } from './copy.js';
+import { REEL, WALL } from './copy.js';
 import { setOurMuted } from './audio.js';
 
 export function renderReel(screenEl, onDone) {
@@ -95,4 +95,74 @@ export function renderReel(screenEl, onDone) {
   }
 
   advance();
+}
+
+export function renderWall(screenEl) {
+  screenEl.innerHTML = `
+    <a class="our-song-badge" href="${WALL.ourSongHref}" target="_blank" rel="noopener">${WALL.ourSongLabel}</a>
+  `;
+
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  let topZ = 1;
+
+  REEL.photos.forEach((entry, idx) => {
+    const el = document.createElement('div');
+    el.className = 'polaroid';
+    el.innerHTML = `
+      <img src="${entry.file}" alt="" />
+      ${entry.caption ? `<div class="cap">${entry.caption}</div>` : ''}
+    `;
+    // Scatter within safe insets
+    const padX = 110, padY = 130;
+    const x = padX + Math.random() * Math.max(40, W - padX * 2);
+    const y = padY + Math.random() * Math.max(40, H - padY * 2);
+    const rot = (Math.random() - 0.5) * 24; // -12deg to +12deg
+    el.style.left = `${x - 90}px`;
+    el.style.top = `${y - 100}px`;
+    el.style.transform = `rotate(${rot}deg)`;
+    el.style.zIndex = String(idx);
+
+    screenEl.appendChild(el);
+
+    // Drop animation (staggered)
+    gsap.fromTo(el,
+      { y: -300, opacity: 0, rotate: rot - 20 },
+      { y: 0, opacity: 1, rotate: rot, duration: 0.7, delay: 0.04 * idx, ease: 'power2.out' }
+    );
+
+    enableDragAndEnlarge(el, () => { topZ += 1; el.style.zIndex = String(topZ); });
+  });
+}
+
+function enableDragAndEnlarge(el, bringToFront) {
+  let startX = 0, startY = 0, baseLeft = 0, baseTop = 0, moved = false, pointerId = null;
+
+  el.addEventListener('pointerdown', e => {
+    pointerId = e.pointerId;
+    el.setPointerCapture(pointerId);
+    bringToFront();
+    startX = e.clientX; startY = e.clientY;
+    baseLeft = parseFloat(el.style.left); baseTop = parseFloat(el.style.top);
+    moved = false;
+  });
+
+  el.addEventListener('pointermove', e => {
+    if (pointerId === null) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved = true;
+    el.style.left = `${baseLeft + dx}px`;
+    el.style.top  = `${baseTop  + dy}px`;
+  });
+
+  el.addEventListener('pointerup', () => {
+    if (!moved) {
+      el.classList.toggle('enlarged');
+      bringToFront();
+    }
+    pointerId = null;
+  });
+
+  el.addEventListener('pointercancel', () => { pointerId = null; });
 }
