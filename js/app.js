@@ -47,11 +47,14 @@ function renderLanding() {
   el.innerHTML = `
     <p class="line">${LANDING.line}</p>
     <button class="start">${LANDING.startLabel}</button>
+    <p class="volume-hint"><span class="speaker">🔊</span> turn on your volume</p>
   `;
   const line = el.querySelector('.line');
   const start = el.querySelector('.start');
+  const hint = el.querySelector('.volume-hint');
   gsap.to(line,  { opacity: 1, y: 0, duration: 1.2, delay: 0.3, ease: 'power2.out' });
   gsap.fromTo(start, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, delay: 1.1, ease: 'power2.out' });
+  gsap.fromTo(hint,  { y: 6, opacity: 0 },  { y: 0, opacity: 1, duration: 0.8, delay: 1.6, ease: 'power2.out' });
   start.addEventListener('click', onStart, { once: true });
 }
 

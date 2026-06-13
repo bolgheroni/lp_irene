@@ -75,6 +75,20 @@ button:active { transform: scale(0.97); }
 .landing .start {
   opacity: 0;
 }
+.landing .volume-hint {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  display: inline-flex; align-items: center; gap: 0.4em;
+}
+.landing .volume-hint .speaker {
+  display: inline-block;
+  animation: speaker-blink 1.2s ease-in-out infinite;
+}
+@keyframes speaker-blink {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.15); }
+}
 
 .food-puzzle {
   display: none;
