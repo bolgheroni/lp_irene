@@ -45,7 +45,7 @@ Wrong answers are never blocking — they show a sassy line and let her retry. T
 - Full black background.
 - Single line fades in (serif, cream): *"Three little puzzles. Then something for you."*
 - Below: a soft button labeled **Start**.
-- No music yet.
+- No music yet. (The Start click is the user gesture that unlocks audio playback — `fun_song.mp3` starts looping the moment she enters puzzle 1.)
 
 ### 2. Puzzle 1 — Italian food picker
 
@@ -87,7 +87,7 @@ A two-reel slot machine UI on a black stage.
 - Each non-jackpot combo flashes a generated "couple name" + a one-liner from a pool of ~12 reactions (e.g., *"Bombolone Zucchina. Sounds like a dessert. No."*). Same combo never shows the same line twice in a session.
 - Jackpot = **Boquetoni + Zucchero** → reels stop, light up, soft chime, screen fades to white-on-black: *"That's us. 💌"* → button: **Press play to start the show**.
 
-Reels are deterministically rigged: on each spin attempt, there is an increasing probability of landing on jackpot (start at 25%, +15% per pull, capped at 100%). This guarantees she wins within ~4 pulls without it feeling instant. Implementation: each reel has independent target indices, but the "jackpot roll" decides whether to override both with the winning indices for that pull.
+Reels are deterministically rigged with a **minimum of 3 losing pulls before any jackpot is possible**. From pull 4 onward, jackpot probability starts at 50% and increases +20% per subsequent pull (capped at 100%) — so she wins by pull 6 at the latest, but the first three pulls are *guaranteed* misses that show funny generated combos. Implementation: each reel has independent target indices; the "jackpot roll" is hard-locked to false for pulls 1–3, then becomes probabilistic from pull 4 onward.
 
 ### 5. Press-play gate
 
@@ -159,7 +159,9 @@ Captions can stay empty (`""`) — those photos just play without text.
 - **GSAP** (CDN) for animations: slot machine reel spin, polaroid drops, Ken Burns, crossfades.
 - **Vite** as optional local dev server (`npm create vite@latest -- --template vanilla`) — only for dev convenience. Final deployable artifact is plain static files.
 - **No backend, no analytics, no auth.**
-- **Audio:** single `our_song.mp3` (already in repo), played via `<audio>` element, started on user gesture.
+- **Audio:** two files, both played via `<audio>` elements.
+  - `our_song.mp3` — "Can't Take My Eyes Off You". Plays during the cinematic reel, starts on the press-play gesture.
+  - `fun_song.mp3` — playful background music. Starts on the Landing "Start" click (this gesture also unlocks audio), loops at low volume (~30%) through all three puzzles, fades out over ~1.5s when the press-play gate is shown.
 
 ## File structure
 
@@ -177,7 +179,8 @@ Captions can stay empty (`""`) — those photos just play without text.
     food/             // 8 food photos (already in repo, currently at project root — to be moved)
     photos/           // 27 couple photos (currently at project root — to be moved)
     audio/
-      our_song.mp3    // currently at project root — to be moved
+      our_song.mp3    // currently at project root — to be moved (cinematic reel)
+      fun_song.mp3    // currently at project root — to be moved (puzzles, looped)
   docs/
     superpowers/specs/2026-06-12-valentine-page-design.md   // this file
 ```
