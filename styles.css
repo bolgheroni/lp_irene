@@ -1,0 +1,52 @@
+:root {
+  --bg: #000;
+  --bg-soft: #0a0a0a;
+  --text: #f5ecd9;
+  --text-dim: #b8ad95;
+  --accent: #e8788a;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+#root {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  padding: 0.85em 2em;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+button:hover { background: var(--text); color: var(--bg); }
+button:active { transform: scale(0.97); }
+
+.screen { position: absolute; inset: 0; display: none; }
+#root[data-screen="landing"] .screen.landing,
+#root[data-screen="puzzle1"] .screen.puzzle1,
+#root[data-screen="puzzle2"] .screen.puzzle2,
+#root[data-screen="puzzle3"] .screen.puzzle3,
+#root[data-screen="gate"]    .screen.gate,
+#root[data-screen="reel"]    .screen.reel,
+#root[data-screen="wall"]    .screen.wall { display: block; }
