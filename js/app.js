@@ -1,4 +1,5 @@
 import { LANDING } from './copy.js';
+import { startFun } from './audio.js';
 
 const root = document.getElementById('root');
 
@@ -45,8 +46,8 @@ function renderLanding() {
 }
 
 function onStart() {
-  // Audio + puzzle 1 wired up in Task 5/6 — placeholder for now.
-  console.log('start clicked');
+  startFun();
+  go('puzzle1');
 }
 
 // Boot
