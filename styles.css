@@ -75,3 +75,65 @@ button:active { transform: scale(0.97); }
 .landing .start {
   opacity: 0;
 }
+
+.food-puzzle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+#root[data-screen="puzzle1"] .screen.puzzle1,
+#root[data-screen="puzzle2"] .screen.puzzle2 { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; gap: 2rem; }
+
+.food-puzzle .title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3.6vw, 2.1rem);
+  font-style: italic;
+  max-width: 22ch;
+  line-height: 1.3;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 1rem;
+  max-width: 680px;
+  width: 100%;
+}
+@media (min-width: 720px) {
+  .food-grid { grid-template-columns: repeat(4, 1fr); max-width: 920px; }
+}
+
+.food-card {
+  display: flex; flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid #1c1c1c;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.food-card:hover { transform: translateY(-3px); border-color: #2c2c2c; }
+.food-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.food-card .label {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  padding: 0.75rem 0.5rem;
+  color: var(--text);
+}
+
+.food-puzzle .reaction {
+  min-height: 1.5em;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0;
+}

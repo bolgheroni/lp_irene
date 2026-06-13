@@ -1,5 +1,6 @@
 import { LANDING } from './copy.js';
 import { startFun } from './audio.js';
+import { renderPuzzle1, renderPuzzle2 } from './puzzles.js';
 
 const root = document.getElementById('root');
 
@@ -20,6 +21,8 @@ function go(name) {
 
 const renderers = {
   landing: renderLanding,
+  puzzle1: () => renderPuzzle1(ensureScreen('puzzle1'), () => go('puzzle2')),
+  puzzle2: () => renderPuzzle2(ensureScreen('puzzle2'), () => go('puzzle3')),
 };
 
 function ensureScreen(name) {
