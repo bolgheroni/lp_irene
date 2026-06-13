@@ -100,6 +100,7 @@ export function renderReel(screenEl, onDone) {
 export function renderWall(screenEl) {
   screenEl.innerHTML = `
     <a class="our-song-badge" href="${WALL.ourSongHref}" target="_blank" rel="noopener">${WALL.ourSongLabel}</a>
+    <p class="wall-hint">you can move and click on them :)</p>
   `;
 
   const W = window.innerWidth;

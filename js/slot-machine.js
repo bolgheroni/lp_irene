@@ -12,14 +12,14 @@ export function renderSlot(screenEl, onJackpot) {
   screenEl.innerHTML = `
     <div class="slot">
       <h2 class="title">${SLOT.title}</h2>
-      <div class="reels">
-        <div class="reel" data-side="left">
-          <div class="reel-strip">
+      <div class="slot-reels">
+        <div class="slot-reel" data-side="left">
+          <div class="slot-strip">
             ${buildStrip(SLOT.leftReel, SPIN_ROUNDS + 2).map(v => `<div class="cell">${v}</div>`).join('')}
           </div>
         </div>
-        <div class="reel" data-side="right">
-          <div class="reel-strip">
+        <div class="slot-reel" data-side="right">
+          <div class="slot-strip">
             ${buildStrip(SLOT.rightReel, SPIN_ROUNDS + 2).map(v => `<div class="cell">${v}</div>`).join('')}
           </div>
         </div>
@@ -29,11 +29,11 @@ export function renderSlot(screenEl, onJackpot) {
     </div>
   `;
 
-  const leftStrip  = screenEl.querySelector('.reel[data-side="left"] .reel-strip');
-  const rightStrip = screenEl.querySelector('.reel[data-side="right"] .reel-strip');
+  const leftStrip  = screenEl.querySelector('.slot-reel[data-side="left"] .slot-strip');
+  const rightStrip = screenEl.querySelector('.slot-reel[data-side="right"] .slot-strip');
   const lever      = screenEl.querySelector('.lever');
   const reaction   = screenEl.querySelector('.reaction');
-  const reelEls    = screenEl.querySelectorAll('.reel');
+  const reelEls    = screenEl.querySelectorAll('.slot-reel');
 
   gsap.fromTo(screenEl.querySelector('.title'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' });
   gsap.fromTo(reelEls,   { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.15, stagger: 0.08, ease: 'power2.out' });
