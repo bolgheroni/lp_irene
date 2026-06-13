@@ -26,7 +26,7 @@ export const PUZZLE_2 = {
 };
 
 export const SLOT = {
-  title: 'Last one. What are our Sims called?',
+  title: 'Last one. What are our REAL names??',
   pullLabel: 'Pull',
   jackpotLine: "That's us. 💌",
   pressPlayLabel: 'Press play to start the show',
