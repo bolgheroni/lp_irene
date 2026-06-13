@@ -11,7 +11,7 @@ export const PUZZLE_1 = {
     { id: 'cacio',     label: 'Cacio e Pepe',        img: 'assets/food/cacio_pepe.webp',          correct: true,  reaction: '' },
     { id: 'bolognese', label: 'Spaghetti Bolognese', img: 'assets/food/spaghetti_bolognese.jpeg', correct: false, reaction: "Tourist trap. No Italian eats this." },
     { id: 'alfredo',   label: 'Fettuccine Alfredo',  img: 'assets/food/fettucine_alfredo.webp',   correct: false, reaction: 'American invention. Try again.' },
-    { id: 'melanzane', label: 'Lasagna di Melanzane',img: 'assets/food/lasanha_berinjela.webp',   correct: false, reaction: '😏 nice try.' },
+    { id: 'melanzane', label: 'Lasagna di Melanzane',img: 'assets/food/lasanha_berinjela.webp',   correct: false, reaction: '😏 isnt it right?' },
   ],
 };
 
@@ -19,9 +19,9 @@ export const PUZZLE_2 = {
   title: 'Now my side. Pick the real one.',
   options: [
     { id: 'pao',          label: 'Pão de queijo',         img: 'assets/food/pao_de_queijo.jpg',      correct: true,  reaction: '' },
-    { id: 'brilhadeiro',  label: 'Brilhadeiro',           img: 'assets/food/brigadeiro.jpg',         correct: false, reaction: "'Shiny one' — almost. The real one is brigadeiro." },
-    { id: 'beijoada',     label: 'Beijoada',              img: 'assets/food/feijoada.jpg',           correct: false, reaction: "'Kissed one' — cute, but no." },
-    { id: 'lasanha',      label: 'Lasanha de berinjela',  img: 'assets/food/lasanha_berinjela.webp', correct: false, reaction: "Don't even start." },
+    { id: 'brilhadeiro',  label: 'Brilhadeiro',           img: 'assets/food/brigadeiro.jpg',         correct: false, reaction: "'You shine but not this time.." },
+    { id: 'beijoada',     label: 'Beijoada',              img: 'assets/food/feijoada.jpg',           correct: false, reaction: "'I would like to kiss you" },
+    { id: 'lasanha',      label: 'Lasanha de berinjela',  img: 'assets/food/lasanha_berinjela.webp', correct: false, reaction: "If only this was the right name...." },
   ],
 };
 
